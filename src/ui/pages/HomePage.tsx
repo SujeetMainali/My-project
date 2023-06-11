@@ -5,9 +5,9 @@ function HomePage() {
     <>
       <div className="wrapper">
         <NavBar /> <br />
-        <p>navbar</p>
+        
       </div>
-      <p>this is home page</p>
+     
     </>
   );
 }
