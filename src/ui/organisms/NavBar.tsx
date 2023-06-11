@@ -1,66 +1,130 @@
-import { Link } from 'react-router-dom'
-import { styled } from 'styled-components'
+import {
+  AppBar,
+  Box,
+  Button,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import React from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { logo } from "../../assets/assets";
+import { Link } from "react-router-dom";
 
-function NavBar() {
-  const navLinks = [
-    {name: 'Home', path: '/'},
-    {name: 'Login', path: '/login'},
-    {name: 'Signup', path: '/signup'}
-    // {name: 'home', path: '/'}
-  ]
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
+
+const drawerWidth = 240;
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "Login", path: "/login" },
+  { name: "Signup", path: "/signup" },
+  // {name: 'home', path: '/'}
+];
+
+export default function DrawerAppBar(props: Props) {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        MUI
+      </Typography>
+      <Divider />
+      <List>
+        {navItems.map(({ name, path }) => (
+          <ListItem key={name} disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <Link to={path}>{name}</Link>
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
   return (
-    <NavigationContainer>
-      <div className="container">
-        <div className="right">
-          image
-        </div>
-        <div className="left">
-          <ul className="links">
-            {navLinks.map(({ name, path }) => {
-              return (
-                <li key={name}>
-                  <Link to={path} className='link'>{name}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-    </NavigationContainer>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar component="nav">
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+          >
+            <img src={logo} alt="" style={{ width: 40 }} />
+          </Typography>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            {navItems.map(({ name, path }) => (
+              <Button key={name} sx={{ color: "#fff" }}>
+                <Link
+                  to={path}
+                  style={{
+                    marginRight: 30,
+                    listStyle: "none",
+                    textDecoration: "none",
+                    color: "white",
+                  }}
+                >
+                  {name}
+                </Link>
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Box component="nav">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      <Box component="main" sx={{ p: 3 }}>
+        <Toolbar />
+      </Box>
+    </Box>
   );
 }
-
-const NavigationContainer = styled.div`
-/* display: flex; */
-.container{
-  border: 2px solid black;
-  background-color: aliceblue;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
- .right{
-margin-left: 5rem;
- }
- .left{
-margin-right: 5rem;
- .links{
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  
- }
- .link{
-  font-size: 14px;
-  color: black;
-  text-decoration: none;
-  cursor: default;
- }
- }
-}
-
-  
-`
-
-export default NavBar
