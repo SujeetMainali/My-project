@@ -72,20 +72,24 @@ const Inputs: React.FC<ICreateNoteProps> = ({ addNotes }) => {
             name="title"
             value={note.title}
             inputProps={{
-              maxLength: TITLE_LIMIT
+              maxLength: TITLE_LIMIT,
             }}
           ></InputBase>
-          <Box component="span">{note.title.length}/{TITLE_LIMIT}</Box>
+          <Box component="span">
+            {note.title.length}/{TITLE_LIMIT}
+          </Box>
           <InputBase
             placeholder="body"
             onChange={(e) => onValueChange(e)}
             name="body"
             value={note.body}
             inputProps={{
-              maxLength: BODY_LIMIT
+              maxLength: BODY_LIMIT,
             }}
           ></InputBase>
-          <Box component="span">{note.body.length}/{BODY_LIMIT}</Box>
+          <Box component="span">
+            {note.body.length}/{BODY_LIMIT}
+          </Box>
           <InputBase
             type="color"
             defaultValue={"#000000"}
