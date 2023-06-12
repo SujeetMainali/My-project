@@ -6,5 +6,5 @@ export interface NoteObject {
   date: string;
 }
 
-export const TITLE_LIMIT = 30
-export const BODY_LIMIT = 80
+export const TITLE_LIMIT = 30;
+export const BODY_LIMIT = 80;
