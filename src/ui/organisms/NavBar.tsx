@@ -42,7 +42,11 @@ export default function DrawerAppBar(props: Props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: "center" }}
+      position="static"
+    >
       <Typography variant="h6" sx={{ my: 2 }}>
         MUI
       </Typography>
@@ -81,7 +85,26 @@ export default function DrawerAppBar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <img src={logo} alt="" style={{ width: 40 }} />
+            <img src={logo} alt="" style={{ width: 40, marginRight: 20 }} />
+            <span
+              style={{
+                color: "brown",
+                fontWeight: "bolder",
+                textAlign: "center",
+                textDecoration: "none",
+              }}
+            >
+              <Link
+                to="/"
+                style={{
+                  textDecoration: "none",
+                  color: "brown",
+                  cursor: "pointer",
+                }}
+              >
+                Coffee.co
+              </Link>
+            </span>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map(({ name, path }) => (
