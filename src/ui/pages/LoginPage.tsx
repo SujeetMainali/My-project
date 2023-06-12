@@ -1,4 +1,5 @@
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
+import firebase from "firebase/compat/app";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 
 interface IFormInputs {
@@ -15,10 +16,29 @@ function LoginPage() {
 
   const onSubmit: SubmitHandler<IFormInputs> = (data) => console.log(data);
 
+  const signUpWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        console.log("Signed in user", user);
+        console.log("additional info", result.additionalUserInfo);
+        console.log("credential", result.credential);
+        console.log("operation type", result.operationType);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <Container>
-        <Typography style={{fontSize:25, fontWeight:'bolder'}}>LoginPage</Typography>
+        <Typography style={{ fontSize: 25, fontWeight: "bolder" }}>
+          LoginPage
+        </Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
@@ -48,8 +68,18 @@ function LoginPage() {
           />
           {/* <Box component="span" /> */}
           {/* <input type="submit" style={{margin:10, background:'blue'}} /> */}
-          <Button variant="outlined" type="submit" style={{width: 240, marginLeft: 10}}>Submit </Button>
+          <Button
+            variant="outlined"
+            type="submit"
+            style={{ width: 240, marginLeft: 10 }}
+          >
+            Submit{" "}
+          </Button>
         </form>
+        <Typography>Or</Typography>
+        <Button variant="contained" onClick={() => signUpWithGoogle()}>
+          Sign up with Google
+        </Button>
       </Container>
     </>
   );
