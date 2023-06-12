@@ -14,7 +14,7 @@ const Notes: React.FC<INoteProps> = ({ notes, deleteNote }) => {
         <Typography variant="h5">Notes</Typography>
         <Box>
           {notes.map((note) => (
-            <Note note={note} deleteNote={deleteNote} />
+            <Note key={note.id} note={note} deleteNote={deleteNote} />
           ))}
         </Box>
       </Box>
