@@ -1,39 +1,25 @@
-import { Box, Button, InputBase, styled } from "@mui/material";
+import { Box } from "@mui/material";
 import NavBar from "../organisms/NavBar";
+import Inputs from "../organisms/Inputs";
+import Notes from '../organisms/Notes'
+import { useState } from "react";
+import { NoteObject } from "../../interface/Interface";
 
-const Container = styled(Box)`
-  & > div > input[type="text"] {
-    border-bottom: 1px solid black;
-  opacity: 0.4;
-  }
-`;
+    const HomePage = () => {
+      const [notes, setNotes] = useState<NoteObject[]>([])
 
-function HomePage() {
+      const addNotes = (note: NoteObject)=>{
+        setNotes([note, ...notes]);
+      }
   return (
     <>
-      <div className="wrapper">
-        <NavBar />
-        <Container>
-          <InputBase
-            placeholder="title"
-            // style={{ border: "1px solid black", margin: 2 }}
-          ></InputBase>
-          <Box component="span">30</Box>
-          <InputBase
-            placeholder="body"
-            // style={{ border: "1px solid black", margin: 2 }}
-          ></InputBase>
-          <Box component="span">50</Box>
-          <InputBase
-            type="color"
-            defaultValue={"#000000"}
-            style={{ width: 20 }}
-          ></InputBase>
-          <Button variant="outlined">Create</Button>
-        </Container>
-      </div>
+      <NavBar />
+      <Box style={{ padding: 20 }}>
+        <Inputs addNotes={addNotes} />
+        <Notes />
+      </Box>
     </>
   );
-}
+};
 
 export default HomePage;
