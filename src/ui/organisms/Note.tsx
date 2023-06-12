@@ -25,6 +25,7 @@ const Note: React.FC<INoteProp> = ({note, deleteNote}) => {
 const StyledCard = styled(Card)`
 width: 300px;
 margin: 20px;
+
 `
 const Wrapper = styled(Box)`
   &>button{

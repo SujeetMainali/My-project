@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography , styled} from "@mui/material";
 import { NoteObject } from "../../interface/Interface";
 import Note from "./Note";
 
@@ -12,14 +12,21 @@ const Notes: React.FC<INoteProps> = ({ notes, deleteNote }) => {
     <>
       <Box>
         <Typography variant="h5">Notes</Typography>
-        <Box>
+        <Wrapper >
           {notes.map((note) => (
             <Note key={note.id} note={note} deleteNote={deleteNote} />
           ))}
-        </Box>
+        </Wrapper>
       </Box>
     </>
   );
 };
+
+const Wrapper = styled(Box)`
+display: flex;
+flex-wrap: wrap;
+max-width: 1600px;
+
+`
 
 export default Notes;
