@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NoteObject } from "../../interface/Interface";
 import { v4 as uuid } from "uuid";
 
+
 const Container = styled(Box)`
   & > * {
     margin: 0px 20px 20px 0px;
@@ -71,12 +72,14 @@ const Inputs: React.FC<ICreateNoteProps> = ({ addNotes }) => {
             placeholder="title"
             onChange={(e) => onValueChange(e)}
             name="title"
+            value={note.title}
           ></InputBase>
           <Box component="span">30</Box>
           <InputBase
             placeholder="body"
             onChange={(e) => onValueChange(e)}
             name="body"
+            value={note.body}
           ></InputBase>
           <Box component="span">50</Box>
           <InputBase
