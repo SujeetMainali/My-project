@@ -3,33 +3,7 @@ import { useState } from "react";
 import { NoteObject, TITLE_LIMIT, BODY_LIMIT } from "../../interface/Interface";
 import { v4 as uuid } from "uuid";
 
-const Container = styled(Box)`
-  & > * {
-    margin: 0px 20px 20px 0px;
-  }
-  & > div > input[type="text"] {
-    border-bottom: 1px solid black;
-    opacity: 0.4;
-  }
 
-  & > div > input[type="color"] {
-    width: 30px;
-    height: 30px;
-    bottom: -30px;
-  }
-  & > span {
-    font-size: 10px;
-    position: relative;
-    right: 40px;
-  }
-`;
-const Error = styled(Typography)`
-  background-color: red;
-  color: white;
-  padding: 10px;
-  width: 50%;
-  border-radius: 10px;
-`;
 const defaultObject = {
   id: "",
   title: "",
@@ -105,5 +79,34 @@ const Inputs: React.FC<ICreateNoteProps> = ({ addNotes }) => {
     </>
   );
 };
+
+const Container = styled(Box)`
+  & > * {
+    margin: 0px 20px 20px 0px;
+  }
+  & > div > input[type="text"] {
+    border-bottom: 1px solid black;
+    opacity: 0.4;
+  }
+
+  & > div > input[type="color"] {
+    width: 30px;
+    height: 30px;
+    bottom: -30px;
+  }
+  & > span {
+    font-size: 10px;
+    position: relative;
+    right: 40px;
+  }
+`;
+const Error = styled(Typography)`
+  background-color: red;
+  color: white;
+  padding: 10px;
+  width: 50%;
+  border-radius: 10px;
+`;
+
 
 export default Inputs;

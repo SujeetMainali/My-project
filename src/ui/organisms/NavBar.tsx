@@ -102,7 +102,7 @@ export default function DrawerAppBar(props: Props) {
                   cursor: "pointer",
                 }}
               >
-                Coffee.co
+                Notes
               </Link>
             </span>
           </Typography>
