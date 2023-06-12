@@ -11,12 +11,17 @@ import { NoteObject } from "../../interface/Interface";
       const addNotes = (note: NoteObject)=>{
         setNotes([note, ...notes]);
       }
+
+      const deleteNote = (id: string)=>{
+        const updatedNotes = notes.filter(note=>note.id !== id)
+        setNotes(updatedNotes)
+      }
   return (
     <>
       <NavBar />
       <Box style={{ padding: 20 }}>
         <Inputs addNotes={addNotes} />
-        <Notes notes = {notes} />
+        <Notes notes = {notes} deleteNote={deleteNote} />
       </Box>
     </>
   );

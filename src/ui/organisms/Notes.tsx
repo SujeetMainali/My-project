@@ -4,19 +4,18 @@ import Note from "./Note";
 
 interface INoteProps {
   notes: NoteObject[];
+  deleteNote: (id: string) => void
 }
 
-const Notes: React.FC<INoteProps> = ({ notes }) => {
+const Notes: React.FC<INoteProps> = ({ notes, deleteNote }) => {
   return (
     <>
       <Box>
         <Typography variant="h5">Notes</Typography>
         <Box>
-          {
-            notes.map(note=>(
-              <Note note = {note} />
-            ))
-          }
+          {notes.map((note) => (
+            <Note note={note} deleteNote={deleteNote} />
+          ))}
         </Box>
       </Box>
     </>
