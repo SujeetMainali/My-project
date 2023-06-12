@@ -16,7 +16,7 @@ import { NoteObject } from "../../interface/Interface";
       <NavBar />
       <Box style={{ padding: 20 }}>
         <Inputs addNotes={addNotes} />
-        <Notes />
+        <Notes notes = {notes} />
       </Box>
     </>
   );
