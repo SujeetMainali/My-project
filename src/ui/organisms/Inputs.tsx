@@ -1,9 +1,7 @@
 import { Box, Button, InputBase, Typography, styled } from "@mui/material";
-
 import { useState } from "react";
-import { NoteObject } from "../../interface/Interface";
+import { NoteObject, TITLE_LIMIT, BODY_LIMIT } from "../../interface/Interface";
 import { v4 as uuid } from "uuid";
-
 
 const Container = styled(Box)`
   & > * {
@@ -62,7 +60,7 @@ const Inputs: React.FC<ICreateNoteProps> = ({ addNotes }) => {
       return;
     }
     addNotes({ ...note, id: uuid() });
-    setNote(defaultObject)
+    setNote(defaultObject);
   };
   return (
     <>
@@ -73,15 +71,21 @@ const Inputs: React.FC<ICreateNoteProps> = ({ addNotes }) => {
             onChange={(e) => onValueChange(e)}
             name="title"
             value={note.title}
+            inputProps={{
+              maxLength: TITLE_LIMIT
+            }}
           ></InputBase>
-          <Box component="span">30</Box>
+          <Box component="span">{note.title.length}/{TITLE_LIMIT}</Box>
           <InputBase
             placeholder="body"
             onChange={(e) => onValueChange(e)}
             name="body"
             value={note.body}
+            inputProps={{
+              maxLength: BODY_LIMIT
+            }}
           ></InputBase>
-          <Box component="span">50</Box>
+          <Box component="span">{note.body.length}/{BODY_LIMIT}</Box>
           <InputBase
             type="color"
             defaultValue={"#000000"}
