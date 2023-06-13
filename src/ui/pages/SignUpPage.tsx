@@ -1,4 +1,4 @@
-import { Box, TextField, Typography, styled } from "@mui/material";
+import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 interface IFormInputs {
@@ -45,6 +45,7 @@ function SignUpPage() {
             <TextField {...field} placeholder="password" type="password" />
           )}
           />
+          <Button type="submit" variant="outlined" >Sign Up </Button>
         </form>
       </Container>
     </>
@@ -56,7 +57,7 @@ const Container = styled(Box)`
   align-items: center;
   justify-content: center;
 
-  
+
 `;
 
 export default SignUpPage;
