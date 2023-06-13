@@ -1,28 +1,44 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import * as yup from "yup";
 
 interface IFormInputs {
   fullName: string;
   email: string;
   password: string;
 }
+
+const schema = yup.object().shape({
+  fullName: yup.string().required("Full Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  password: yup.string().required("Password is required"),
+});
+
 function SignUpPage() {
-  const { control, handleSubmit } = useForm<IFormInputs>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInputs>({
     defaultValues: {
       fullName: "",
       email: "",
       password: "",
     },
+    resolver: yupResolver(schema),
   });
 
-  const onSignUp:SubmitHandler<IFormInputs> = (data)=>{
+  const onSignUp: SubmitHandler<IFormInputs> = (data) => {
     console.log(data);
-    
-  }
+  };
+
   return (
     <>
       <Container>
-        <Typography style={{fontSize:20, fontWeight:'bolder'}}>Sign Up here</Typography>
+        <Typography style={{ fontSize: 20, fontWeight: "bolder" }}>
+          Sign Up here
+        </Typography>
         <form onSubmit={handleSubmit(onSignUp)}>
           <Controller
             name="fullName"
@@ -33,6 +49,8 @@ function SignUpPage() {
                 placeholder="Full Name"
                 type="text"
                 style={{ margin: 10 }}
+                error={!!errors.fullName}
+                helperText={errors.fullName?.message}
               />
             )}
           />
@@ -42,9 +60,11 @@ function SignUpPage() {
             render={({ field }) => (
               <TextField
                 {...field}
-                placeholder="email"
+                placeholder="Email"
                 type="email"
                 style={{ margin: 10 }}
+                error={!!errors.email}
+                helperText={errors.email?.message}
               />
             )}
           />
@@ -54,9 +74,11 @@ function SignUpPage() {
             render={({ field }) => (
               <TextField
                 {...field}
-                placeholder="password"
+                placeholder="Password"
                 type="password"
                 style={{ margin: 10 }}
+                error={!!errors.password}
+                helperText={errors.password?.message}
               />
             )}
           />
@@ -65,7 +87,7 @@ function SignUpPage() {
             variant="outlined"
             style={{ width: 240, marginLeft: 10 }}
           >
-            Sign Up{" "}
+            Sign Up
           </Button>
         </form>
       </Container>
@@ -79,10 +101,10 @@ const Container = styled(Box)`
   justify-content: center;
   flex-direction: column;
 
-form{
-  display: flex;
-  flex-direction: column;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export default SignUpPage;
