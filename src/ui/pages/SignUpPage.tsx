@@ -20,6 +20,7 @@ function SignUpPage() {
     control,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<IFormInputs>({
     defaultValues: {
       fullName: "",
@@ -31,6 +32,7 @@ function SignUpPage() {
 
   const onSignUp: SubmitHandler<IFormInputs> = (data) => {
     console.log(data);
+    reset()
   };
 
   return (
