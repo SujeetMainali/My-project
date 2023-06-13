@@ -8,7 +8,7 @@ const defaultObject = {
   id: "",
   title: "",
   body: "",
-  color: "",
+  color: "#e4d0d0",
   date: new Date().toLocaleString().toString(),
 };
 
@@ -66,7 +66,7 @@ const Inputs: React.FC<ICreateNoteProps> = ({ addNotes }) => {
           </Box>
           <InputBase
             type="color"
-            defaultValue={"#000000"}
+            defaultValue="#e4d0d0"
             onChange={(e) => onValueChange(e)}
             name="color"
           ></InputBase>
