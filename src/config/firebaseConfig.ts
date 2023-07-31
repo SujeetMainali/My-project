@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider } from "firebase/auth/cordova";
+// import { initializeApp } from "firebase/app";
+// import { GoogleAuthProvider } from "firebase/auth/cordova";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,5 +17,5 @@ import { GoogleAuthProvider } from "firebase/auth/cordova";
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
